@@ -14,7 +14,6 @@ class CallbackController < ApplicationController
   end
 
   def parse_data(data)
-  	debugger
     enteries = data["entry"]
     enteries.each do |entry|
       entry["messaging"].each do |messaging|

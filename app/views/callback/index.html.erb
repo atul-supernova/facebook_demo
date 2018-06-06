@@ -1,33 +1,24 @@
-<div class="col-md-7" >
-  <input type="checkbox" class = "fb-messenger-checkbox" page_id= "187200484807277" messenger_app_id="1801301740177204" origin= "https://bc6e4592.ngrok.io//callback/index" prechecked="true" user_ref= "atul_shukla" allow_login="true" size="large"/>  
+<script type="text/javascript">
+    function confirmOptIn() {
+      FB.AppEvents.logEvent('MessengerCheckboxUserConfirmation', null, {
+        'app_id':'1801301740177204',
+        'page_id':'187200484807277',
+        'ref':'',
+        'user_ref':'1500465490011613'
+      });
+    }
+</script>
+
+<div class="col-md-12" >
+  <input type="checkbox" class = "fb-messenger-checkbox" page_id= "187200484807277" messenger_app_id="1801301740177204" origin= "https://bc6e4592.ngrok.io//callback/index" prechecked="true" user_ref= "1500465490011613" allow_login="true" size="large"  value="facebook_login "/> Facebook login?
 </div>
 
 <div>
-	 <input type="button", id= "loginbutton"/>
+	 <input type="button" onclick="confirmOptIn()" value="Confirm Opt-in"/>
 </div>
 
-<div class="col-md-12">
-	<% if user_signed_in? %>
-	  <li>
-	  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
-	  </li>
-	<% else %>
-	  <li>
-	  <%= link_to('Login', new_user_session_path)  %>  
-	  </li>
-	<% end %>
+<div>
+	<%= link_to "Messages", messages_path %>
 </div>
 
-<script type="text/javascript">
-	$(document).ready(function() {
-    $.ajaxSetup({ cache: true });
-    $.getScript('https://connect.facebook.net/en_US/sdk.js', function(){
-      FB.init({
-        appId: '594737634239951',
-        version: 'v2.7' // or v2.1, v2.2, v2.3, ...
-      });     
-      $('#loginbutton,#feedbutton').removeAttr('disabled');
-      FB.getLoginStatus(updateStatusCallback);
-    });
-  });
 </script>

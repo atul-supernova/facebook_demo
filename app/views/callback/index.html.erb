@@ -1,0 +1,33 @@
+<div class="col-md-7" >
+  <input type="checkbox" class = "fb-messenger-checkbox" page_id= "187200484807277" messenger_app_id="1801301740177204" origin= "https://bc6e4592.ngrok.io//callback/index" prechecked="true" user_ref= "atul_shukla" allow_login="true" size="large"/>  
+</div>
+
+<div>
+	 <input type="button", id= "loginbutton"/>
+</div>
+
+<div class="col-md-12">
+	<% if user_signed_in? %>
+	  <li>
+	  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
+	  </li>
+	<% else %>
+	  <li>
+	  <%= link_to('Login', new_user_session_path)  %>  
+	  </li>
+	<% end %>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+    $.ajaxSetup({ cache: true });
+    $.getScript('https://connect.facebook.net/en_US/sdk.js', function(){
+      FB.init({
+        appId: '594737634239951',
+        version: 'v2.7' // or v2.1, v2.2, v2.3, ...
+      });     
+      $('#loginbutton,#feedbutton').removeAttr('disabled');
+      FB.getLoginStatus(updateStatusCallback);
+    });
+  });
+</script>
